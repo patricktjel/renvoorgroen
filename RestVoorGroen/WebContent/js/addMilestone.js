@@ -1,11 +1,12 @@
 var links = "";
 var sponsors = "";
-
+var selSponsors = "";
+var selActivity = "";
 function makelinks(data) {
   var link = '';
   data.forEach(function (activity) {
     link +=
-      '<li><a href="#" data-value="' + activity.id + '">' + activity.user_activity + '</a></li>';
+      '<li><a href="#" onclick="' + selActi(activity.id) + ';" data-value="' + activity.id + '">' + activity.user_activity + '</a></li>';
     links = links + link;
     link = "";
   })
@@ -15,7 +16,7 @@ function makeurls(data2) {
   var sponsorone = '';
   data.forEach(function (sponsor) {
     sponsorone +=
-      '<li><a href="#" data-value="' + sponsor.id + '">' + sponsor.naam + '</a></li>';
+      '<li><a href="#" onclick="' + selSpon(sponsor.id) + ';" data-value="' + sponsor.id + '">' + sponsor.naam + '</a></li>';
     sponsors = sponsors + sponsorone;
     sponsorone = "";
   })
@@ -57,7 +58,7 @@ function addMilestone() {
             '<label class="col-md-4 control-label" for="activity">Activies</label> ' +
             '<div class="col-md-4"> ' +
             '<div class="btn-group"> ' +
-            '<button type="button" name="activity" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
+            '<button type="button" id="activity" name="activity" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
             'Activity <span class="caret"></span> ' +
             '</button> ' +
             '<ul class="dropdown-menu" role="menu"> ' +
@@ -70,7 +71,7 @@ function addMilestone() {
             '<label class="col-md-4 control-label" for="sponsor">Sponsors</label> ' +
             '<div class="col-md-4"> ' +
             '<div class="btn-group"> ' +
-            '<button type="button" name="sponsor" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
+            '<button type="button" id="sponsor" name="sponsor" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
             'Sponsor <span class="caret"></span> ' +
             '</button> ' +
             '<ul class="dropdown-menu" role="menu"> ' +
@@ -80,16 +81,16 @@ function addMilestone() {
             '</div> ' +
             '</div> ' +
             '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="amount">Amount</label> ' +
+            '<label class="col-md-4 control-label" for="amount">Needed amount to win</label> ' +
             '<div class="col-md-4"> ' +
             '<input id="amount" name="amount" type="number" placeholder="Amount" class="form-control input-md"> ' +
             '</div> ' +
             '</div> ' +
             '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="activity">Activity</label> ' +
+            '<label class="col-md-4 control-label" for="euro">Value in Euro</label> ' +
             '<div class="col-md-4"> ' +
-            '<input id="activity" name="activity" type="text" placeholder="Activity" class="form-control input-md"> ' +
-            '<span class="help-block">This is the activity you want to reward.</span> </div> ' +
+            '<input id="euro" name="euro" type="number" placeholder="Euro" class="form-control input-md"> ' +
+            '<span class="help-block">This is the amount you are going to fund after finishing this milestone. </span> </div> ' +
             '</div> ' +
             '</div> ' +
             '</form> </div> </div>';
@@ -107,10 +108,11 @@ function addMilestone() {
                 label: "Save",
                 className: "btn-success",
                 callback: function () {
-                  var firstName = $('#firstName').val();
-                  var lastName = $('#lastName').val();
-                  var id = $('#id').val();
-                  console.log(firstName + " " + lastName + ": " + id);
+                  var amount = $('#amount').val();
+                  var euro = $('#euro').val();
+                  var activityid = selActivity;
+                  var sponsorid = selSponsors;
+                  console.log(amount + ":" + euro + ":" + activityid + ":" + sponsorid);
                 }
               }
 
@@ -133,4 +135,10 @@ function addMilestone() {
   //    <li class="divider"></li>
   //    <li><a href="#">Separated link</a></li>
 
+}
+function selActi(data){
+  selActivity = data;
+}
+function selSpon(data){
+  selSponsors = data;
 }
