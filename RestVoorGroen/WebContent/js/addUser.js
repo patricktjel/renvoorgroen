@@ -61,9 +61,11 @@ function addUser() {
           })
             .done(function (data) {
               console.log(data);
+              location.reload();
             })
             .fail(function (jqXHR, textStatus) {
               console.log(jqXHR);
+              location.reload();
             });
         }
       }
@@ -95,7 +97,6 @@ $(document).ready(function () {
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
       console.log(data);
-      bootbox.alert("<h1>Error making a new user.</h1>" + jqXHR.statusText);
     });
 
 
@@ -108,6 +109,7 @@ function deleteUser(id) {
   })
     .done(function (data) {
       console.log(data);
+      location.reload();
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
