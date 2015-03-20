@@ -64,6 +64,7 @@ function addUser() {
             })
             .fail(function (jqXHR, textStatus) {
               console.log(jqXHR);
+              console.log(data);
               bootbox.alert("<h1>Error making a new user.</h1>" + jqXHR.statusText);
             });
         }
@@ -72,3 +73,34 @@ function addUser() {
     }
   })
 }
+
+$(document).ready(function () {
+  $('#table-users tbody tr').remove();
+  $.ajax({
+    type: 'GET',
+    contentType: "application/json",
+    dataType: "json",
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/user/get",
+  })
+    .done(function (data) {
+      console.log(data);
+      var tableRow = '';
+      data.forEach(function (user) {
+        tableRow += '<tr>' +
+          '<td>' + user.id + '</td>' +
+          '<td>' + user.name + '</td>' +
+          '<td>' + user.adminLevel + '</td>' +
+          '<td><button data-userId="' + user.id + ' type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Remove</button> </td>' +
+          '</tr>';
+        $('#table-users tbody').append(tableRow);
+      });
+
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+      console.log(data);
+      bootbox.alert("<h1>Error making a new user.</h1>" + jqXHR.statusText);
+    });
+
+
+});
