@@ -11,7 +11,7 @@ function makelinks(data) {
   })
 }
 
-function makeurls(data) {
+function makeurls(data2) {
   var sponsorone = '';
   data.forEach(function (sponsor) {
     sponsorone +=
@@ -47,9 +47,9 @@ function addMilestone() {
         type: 'GET',
         url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/sponsor/get",
       })
-        .done(function (data) {
-          console.log(data);
-          makeurls(data);
+        .done(function (data2) {
+          console.log(data2);
+          makeurls(data2);
           var messageBox = '<div class="row"> ' +
             '<div class="col-md-12"> ' +
             '<form class="form-horizontal"> ' +
