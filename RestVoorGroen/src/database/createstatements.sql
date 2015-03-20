@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`users` (
   `inlognaam` VARCHAR(45) NOT NULL,
   `wachtwoord` VARCHAR(45) NOT NULL,
   `fitbitid` VARCHAR(45) NOT NULL,
+  `naam` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
