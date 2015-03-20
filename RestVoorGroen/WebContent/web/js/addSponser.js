@@ -55,3 +55,44 @@ function addSponsor() {
     }
   })
 }
+$(document).ready(function () {
+  $('#table-sponsor tbody tr').remove();
+
+  $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/sponsor/get",
+  })
+    .done(function (data) {
+      console.log(data);
+      var tableRow = '';
+      data.forEach(function (sponsor) {
+        tableRow += '<tr>' +
+          '<td>' + sponsor.naam + '</td>' +
+          '<td>' + sponsor.emailadres + '</td>' +
+          '<td><button onclick="deleteSponsor(' + sponsor.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
+          '</tr>';
+        $('#table-sponsor tbody').append(tableRow);
+      });
+
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+      console.log(data);
+      bootbox.alert("<h1>Error making a new user.</h1>" + jqXHR.statusText);
+    });
+
+
+});
+
+function deleteSponsor(id) {
+  $.ajax({
+    type: 'DELETE',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/sponsor/delete?id=" + id,
+  })
+    .done(function (data) {
+      console.log(data);
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+    });
+}

@@ -74,7 +74,7 @@ function addUser() {
 
 $(document).ready(function () {
   $('#table-users tbody tr').remove();
- 
+
   $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/user/get",
@@ -87,11 +87,10 @@ $(document).ready(function () {
           '<td>' + user.id + '</td>' +
           '<td>' + user.inlognaam + '</td>' +
           '<td>' + user.naam + '</td>' +
-          '<td><button data-userId="' + user.id + ' type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
+          '<td><button onclick="deleteUser(' + user.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
           '</tr>';
         $('#table-users tbody').append(tableRow);
       });
-
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
@@ -101,3 +100,16 @@ $(document).ready(function () {
 
 
 });
+
+function deleteUser(id) {
+  $.ajax({
+    type: 'DELETE',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/user/delete?id=" + id,
+  })
+    .done(function (data) {
+      console.log(data);
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+    });
+}
