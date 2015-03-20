@@ -121,7 +121,7 @@ function addMilestone() {
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
       location.reload();
-    });
+    })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
       console.log(data);
