@@ -95,7 +95,7 @@ function addMilestone() {
             '</form> </div> </div>';
 
           bootbox.dialog({
-            title: "Add User",
+            title: "Add Milestone",
             message: messageBox,
             buttons: {
               cancel: {
