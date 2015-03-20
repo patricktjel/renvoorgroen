@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="RestRenVoorGroen">
+    <wb-module deploy-name="Restvoorgroen">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="RestRenVoorGroen"/>
-        <property name="java-output-path" value="/RestRenVoorGroen/build/classes"/>
+        <property name="context-root" value="Restvoorgroen"/>
+        <property name="java-output-path" value="/Restvoorgroen/build/classes"/>
     </wb-module>
 </project-modules>
