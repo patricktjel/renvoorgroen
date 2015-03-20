@@ -45,9 +45,11 @@ function addSponsor() {
           })
             .done(function (data) {
               console.log(data);
+              location.reload();
             })
             .fail(function (jqXHR, textStatus) {
               console.log(jqXHR);
+              location.reload();
             });
         }
       }
@@ -73,12 +75,10 @@ $(document).ready(function () {
           '</tr>';
         $('#table-sponsor tbody').append(tableRow);
       });
-
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
       console.log(data);
-      bootbox.alert("<h1>Error making a new user.</h1>" + jqXHR.statusText);
     });
 
 
@@ -91,6 +91,7 @@ function deleteSponsor(id) {
   })
     .done(function (data) {
       console.log(data);
+      location.reload();
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
