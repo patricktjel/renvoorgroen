@@ -17,4 +17,30 @@ public class Sponsor {
 		this.naam = naam;
 		this.emailadres = emailadres;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNaam() {
+		return naam;
+	}
+
+	public void setNaam(String naam) {
+		this.naam = naam;
+	}
+
+	public String getEmailadres() {
+		return emailadres;
+	}
+
+	public void setEmailadres(String emailadres) {
+		this.emailadres = emailadres;
+	}
+	
+	
 }
