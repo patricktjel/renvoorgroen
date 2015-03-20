@@ -14,7 +14,7 @@ function makelinks(data) {
 
 function makeurls(data2) {
   var sponsorone = '';
-  data.forEach(function (sponsor) {
+  data2.forEach(function (sponsor) {
     sponsorone +=
       '<li><a href="#" onclick="' + selSpon(sponsor.id) + ';" data-value="' + sponsor.id + '">' + sponsor.naam + '</a></li>';
     sponsors = sponsors + sponsorone;
