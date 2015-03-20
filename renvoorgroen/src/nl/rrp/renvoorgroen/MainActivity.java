@@ -1,17 +1,51 @@
 package nl.rrp.renvoorgroen;
 
+import java.util.concurrent.ExecutionException;
+
+import nl.rrp.renvoorgroen.threads.InitOauth;
+
+import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
+import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthResultSet;
+import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthInputSet;
+import com.temboo.Library.Fitbit.OAuth.*;
+import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
+import com.temboo.core.TembooException;
+import com.temboo.core.TembooSession;
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 
 public class MainActivity extends Activity {
-
+	BroadcastReceiver mReceiver;
+	private WebView w;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Model m = Model.getInstance();
+        
+        m.init(this);
+        Log.d("url", m.getAccesToken());
+        if(m.getAccesToken().equals("")){  
+        	
+	        w = (WebView) findViewById(R.id.webView);
+	        InitOauth init = new InitOauth(w,this);
+	        init.execute();
+        } else {
+        	startActivity(new Intent(this, Overzicht.class));
+        	finish();
+        }
     }
 
 
@@ -33,4 +67,15 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	Log.d("Resultc", resultCode+"");
+       	Log.d("Requestc", requestCode+"");
+       	
+    }
+    
+   
+
 }
