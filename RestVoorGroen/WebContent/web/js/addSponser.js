@@ -1,4 +1,4 @@
-function addMilestone() {
+function addSponsor() {
   bootbox.dialog({
     title: "Add Milestone",
     message: '<div class="row">  ' +
@@ -28,9 +28,27 @@ function addMilestone() {
         label: "Save",
         className: "btn-success",
         callback: function () {
-          var name = $('#name').val();
-          var email = $('#email').val();
-          console.log(name + " " + email);
+
+          var naam = $('#name').val();
+          var emailadres = $('#email').val();
+
+          var data = {
+            "naam": naam,
+            "emailadres": emailadres,
+          };
+          $.ajax({
+            type: 'POST',
+            contentType: "application/json",
+            dataType: "json",
+            data: JSON.stringify(data),
+            url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/sponsor/add",
+          })
+            .done(function (data) {
+              console.log(data);
+            })
+            .fail(function (jqXHR, textStatus) {
+              console.log(jqXHR);
+            });
         }
       }
 
