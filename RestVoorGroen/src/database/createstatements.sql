@@ -139,6 +139,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user_activity` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT ignore INTO `activity` (`id`, `user_activity`) VALUES
+(1, 'floors'),
+(2, 'steps'),
+(3, 'distance');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

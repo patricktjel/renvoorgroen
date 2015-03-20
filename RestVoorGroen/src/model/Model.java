@@ -12,13 +12,7 @@ public class Model {
 	public Model(){
 		DatabaseHelper.createDatabase();
 	}
-	
-	private int id;
-	private String fitbitid;
-	private String wachtwoord;
-	private String inlognaam;
-	private String naam;
-	
+
 	/**
 	 * Get the articles by the give result set
 	 * 
@@ -59,9 +53,22 @@ public class Model {
 			int id = set.getInt("id");
 			String emailadres = set.getString("emailadres");
 			String naam = set.getString("naam");
-			sponsors.add(new Sponsor(id, inlognaam, emailadres));
+			sponsors.add(new Sponsor(id, naam, emailadres));
 		}
 
 		return sponsors;
+	}
+	
+	public ArrayList<Activity> getActivitiesBySet(ResultSet set) throws SQLException {
+		// The list with articles
+		ArrayList<Activity> activities = new ArrayList<Activity>();
+		while (set.next()) {
+			// Set variables
+			int id = set.getInt("id");
+			String user_activity = set.getString("user_activity");
+			activities.add(new Activity(id, user_activity));
+		}
+
+		return activities;
 	}
 }
