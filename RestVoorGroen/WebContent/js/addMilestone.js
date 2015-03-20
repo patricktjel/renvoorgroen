@@ -54,11 +54,11 @@ function addMilestone() {
             '<div class="col-md-12"> ' +
             '<form class="form-horizontal"> ' +
             '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="activity">Activies/label> ' +
+            '<label class="col-md-4 control-label" for="activity">Activies</label> ' +
             '<div class="col-md-4"> ' +
             '<div class="btn-group"> ' +
             '<button type="button" name="activity" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
-            'Sponsor <span class="caret"></span> ' +
+            'Activity <span class="caret"></span> ' +
             '</button> ' +
             '<ul class="dropdown-menu" role="menu"> ' +
             links +
@@ -67,7 +67,7 @@ function addMilestone() {
             '</div> ' +
             '</div> ' +
             '<div class="form-group"> ' +
-            '<label class="col-md-4 control-label" for="sponsor">Sponsors/label> ' +
+            '<label class="col-md-4 control-label" for="sponsor">Sponsors</label> ' +
             '<div class="col-md-4"> ' +
             '<div class="btn-group"> ' +
             '<button type="button" name="sponsor" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"> ' +
