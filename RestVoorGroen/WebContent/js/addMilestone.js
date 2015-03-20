@@ -168,7 +168,7 @@ function selSpon(data) {
   selSponsors = data;
 }
 $(document).ready(function () {
-  $('#table-users tbody tr').remove();
+  $('#table-milestone tbody tr').remove();
 
   $.ajax({
     type: 'GET',
@@ -177,14 +177,15 @@ $(document).ready(function () {
     .done(function (data) {
       console.log(data);
       var tableRow = '';
-      data.forEach(function (user) {
+      data.forEach(function (milestone) {
         tableRow += '<tr>' +
-          '<td>' + user.id + '</td>' +
-          '<td>' + user.inlognaam + '</td>' +
-          '<td>' + user.naam + '</td>' +
-          '<td><button onclick="deleteUser(' + user.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
+          '<td>' + milestone.sponsorNaam + '</td>' +
+          '<td>' + milestone.activityNaam + '</td>' +
+          '<td>' + milestone.value + '</td>' +
+          '<td>&euro;' + milestone.bedrag + '</td>' +
+          '<td><button onclick="deleteMilestone(' + milestone.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
           '</tr>';
-        $('#table-users tbody').append(tableRow);
+        $('#table-milestone tbody').append(tableRow);
       });
     })
     .fail(function (jqXHR, textStatus) {
@@ -195,10 +196,10 @@ $(document).ready(function () {
 
 });
 
-function deleteUser(id) {
+function deleteMilestone(id) {
   $.ajax({
     type: 'DELETE',
-    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/user/delete?id=" + id,
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/milestone/delete?id=" + id,
   })
     .done(function (data) {
       console.log(data);
