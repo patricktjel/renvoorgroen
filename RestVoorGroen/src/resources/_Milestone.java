@@ -18,25 +18,25 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import model.Milestone;
 import model.Model;
-import model.Sponsor;
 import database.DatabaseHelper;
 
-@Path("/sponsor")
-public class _Sponsor{
+@Path("/milestone")
+public class _Milestone{
 
 	@Context ServletContext context;
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/get")
-	public ArrayList<Sponsor> getSponsors() {
+	public ArrayList<Milestone> getMilestones() {
 		Model model = (Model) context.getAttribute("model");
 		try {
-			String sql = "SELECT * FROM  `sponsor`;";
+			String sql = "SELECT * FROM  `milestones`;";
 			PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
 			ResultSet set = stat.executeQuery();
-			return model.getSponsorsBySet(set);
+			return model.getMilestonesBySet(set);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,12 +47,14 @@ public class _Sponsor{
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/add")
-	public Response addSponsor(Sponsor sponsor) {
-		String sql = "INSERT ignore INTO `sponsor` (naam, emailadres) VALUES (?,?);";
+	public Response addSponsor(Milestone milestone) {
+		String sql = "INSERT ignore INTO `milestones` (value, bedrag, activity_id, sponsor_id) VALUES (?,?,?,?);";
 		try {
 			PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
-			stat.setString(1, sponsor.getNaam());
-			stat.setString(2, sponsor.getEmailadres());
+			stat.setDouble(1, milestone.getValue());
+			stat.setDouble(2, milestone.getBedrag());
+			stat.setInt(3, milestone.getActivity_id());
+			stat.setInt(4, milestone.getSponsor_id());
 			stat.execute();
 			throw new WebApplicationException(Response.Status.CREATED);
 		} catch (SQLException e) {
@@ -64,9 +66,9 @@ public class _Sponsor{
 	
 	@DELETE
 	@Path("/delete")
-	public Response deleteSponsor(@QueryParam("id") int id) {
+	public Response deleteMilestone(@QueryParam("id") int id) {
 		try {
-			String sql = "DELETE FROM `sponsor` WHERE id=?";
+			String sql = "DELETE FROM `milestones` WHERE id=?";
 			PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
 			stat.setInt(1, id);
 			stat.execute();

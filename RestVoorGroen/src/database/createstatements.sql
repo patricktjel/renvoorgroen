@@ -67,30 +67,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`achievements` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`user_achievements`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user_achievements` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `achievements_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_user_achievements_achievements1_idx` (`achievements_id` ASC),
-  INDEX `fk_user_achievements_users1_idx` (`users_id` ASC),
-  CONSTRAINT `fk_user_achievements_achievements1`
-    FOREIGN KEY (`achievements_id`)
-    REFERENCES `mydb`.`achievements` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_achievements_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `mydb`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`milestones`
 -- -----------------------------------------------------
@@ -143,6 +119,13 @@ INSERT ignore INTO `activity` (`id`, `user_activity`) VALUES
 (1, 'floors'),
 (2, 'steps'),
 (3, 'distance');
+
+INSERT ignore INTO `users` (`id`, `inlognaam`, `wachtwoord`, `fitbitid`, `naam`) VALUES
+(6, 'rob', 'robbieg', '3B32FN', 'robs');
+
+INSERT ignore INTO `achievements` (`id`, `value`, `activity_id`) VALUES
+(1, 500, 1),
+(2, 3432, 1);
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
