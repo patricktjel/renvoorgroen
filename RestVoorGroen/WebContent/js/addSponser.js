@@ -1,6 +1,6 @@
 function addSponsor() {
   bootbox.dialog({
-    title: "Add Milestone",
+    title: "Add Sponsor",
     message: '<div class="row">  ' +
       '<div class="col-md-12"> ' +
       '<form class="form-horizontal"> ' +
