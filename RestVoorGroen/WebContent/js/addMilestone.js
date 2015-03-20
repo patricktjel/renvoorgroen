@@ -2,11 +2,12 @@ var links = "";
 var sponsors = "";
 var selSponsors = "";
 var selActivity = "";
+
 function makelinks(data) {
   var link = '';
   data.forEach(function (activity) {
     link +=
-      '<li><a href="#" onclick="' + selActi(activity.id) + ';" data-value="' + activity.id + '">' + activity.user_activity + '</a></li>';
+      '<li><a href="#" onclick="selActi(' + activity.id + ');" data-value="' + activity.id + '">' + activity.user_activity + '</a></li>';
     links = links + link;
     link = "";
   })
@@ -15,11 +16,14 @@ function makelinks(data) {
 function makeurls(data2) {
   var sponsorone = '';
   data2.forEach(function (sponsor) {
+
     sponsorone +=
-      '<li><a href="#" onclick="' + selSpon(sponsor.id) + ';" data-value="' + sponsor.id + '">' + sponsor.naam + '</a></li>';
+      '<li><a href="#" onclick="selSpon(' + sponsor.id + ');" data-value="' + sponsor.id + '">' + sponsor.naam + '</a></li>';
     sponsors = sponsors + sponsorone;
+    console.log(sponsors);
     sponsorone = "";
   })
+  return sponsors;
 }
 //<!-- Single button -->
 //<div class="btn-group">
@@ -50,7 +54,7 @@ function addMilestone() {
       })
         .done(function (data2) {
           console.log(data2);
-          makeurls(data2);
+          sponsors = makeurls(data2);
           var messageBox = '<div class="row"> ' +
             '<div class="col-md-12"> ' +
             '<form class="form-horizontal"> ' +
@@ -112,6 +116,27 @@ function addMilestone() {
                   var euro = $('#euro').val();
                   var activityid = selActivity;
                   var sponsorid = selSponsors;
+                  var data = {
+                    "value": amount,
+                    "bedrag": euro,
+                    "activity_id": activityid,
+                    "sponsor_id": sponsorid
+                  };
+                  $.ajax({
+                    type: 'POST',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify(data),
+                    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/milestone/add",
+                  })
+                    .done(function (data) {
+                      console.log(data);
+                      location.reload();
+                    })
+                    .fail(function (jqXHR, textStatus) {
+                      console.log(jqXHR);
+                      location.reload();
+                    });
                   console.log(amount + ":" + euro + ":" + activityid + ":" + sponsorid);
                 }
               }
@@ -134,9 +159,52 @@ function addMilestone() {
   //    <li><a href="#">Separated link</a></li>
 
 }
-function selActi(data){
+
+function selActi(data) {
   selActivity = data;
 }
-function selSpon(data){
+
+function selSpon(data) {
   selSponsors = data;
+}
+$(document).ready(function () {
+  $('#table-users tbody tr').remove();
+
+  $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/milestone/get",
+  })
+    .done(function (data) {
+      console.log(data);
+      var tableRow = '';
+      data.forEach(function (user) {
+        tableRow += '<tr>' +
+          '<td>' + user.id + '</td>' +
+          '<td>' + user.inlognaam + '</td>' +
+          '<td>' + user.naam + '</td>' +
+          '<td><button onclick="deleteUser(' + user.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
+          '</tr>';
+        $('#table-users tbody').append(tableRow);
+      });
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+      console.log(data);
+    });
+
+
+});
+
+function deleteUser(id) {
+  $.ajax({
+    type: 'DELETE',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/user/delete?id=" + id,
+  })
+    .done(function (data) {
+      console.log(data);
+      location.reload();
+    })
+    .fail(function (jqXHR, textStatus) {
+      console.log(jqXHR);
+    });
 }
