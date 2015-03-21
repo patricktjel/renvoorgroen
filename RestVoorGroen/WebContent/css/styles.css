@@ -20,6 +20,9 @@ footer {
   position:relative;
   display:block;
 }
+.img_bestof{
+  height:200px;
+}
 /*
  * Off Canvas
  * --------------------------------------------------
