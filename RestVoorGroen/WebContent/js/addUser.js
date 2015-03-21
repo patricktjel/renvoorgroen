@@ -85,10 +85,11 @@ $(document).ready(function () {
       console.log(data);
       var tableRow = '';
       data.forEach(function (user) {
-        tableRow += '<tr>' +
+        tableRow += '<tr class="clickable-row" data-fitbit="' + user.fitbitid + '">' +
           '<td>' + user.id + '</td>' +
           '<td>' + user.inlognaam + '</td>' +
           '<td>' + user.naam + '</td>' +
+          '<td>' + user.fitbitid + '</td>' +
           '<td><button onclick="deleteUser(' + user.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
           '</tr>';
         $('#table-users tbody').append(tableRow);
@@ -100,7 +101,20 @@ $(document).ready(function () {
       console.log(data);
     });
 
+  $('#table-users').on('click', 'tr', function () {
+    var fitbit = $(this).data('fitbit');
+    // alert('You clicked ' + row);
+    $.ajax({
+      type: 'GET',
+      url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/data/get?id=" + fitbit,
+    })
+      .done(function (data) {
 
+      })
+      .fail(function (jqXHR, textStatus) {
+        console.log(jqXHR);
+      });
+  });
 });
 
 function deleteUser(id) {
