@@ -1,5 +1,8 @@
 package nl.rrp.renvoorgroen.threads;
 
+import nl.rrp.renvoorgroen.MainActivity;
+import nl.rrp.renvoorgroen.Overzicht;
+
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthResultSet;
@@ -8,6 +11,7 @@ import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
@@ -70,5 +74,11 @@ public class FinishOauth extends AsyncTask<InitializeOAuthResultSet, Void, Void>
 		e.printStackTrace();
 	}
 		return null;
+	}
+	
+	@Override
+	protected void onPostExecute(Void result) {
+		c.startActivity(new Intent(c, Overzicht.class));
+    	((MainActivity) c).finish();
 	}
 }
