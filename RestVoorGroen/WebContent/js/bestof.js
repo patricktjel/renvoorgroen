@@ -4,6 +4,21 @@ function getBestResults() {
   var bestOfSteps = "";
   var bestOfDistance = "";
   
+   $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance?limit=3",
+  })
+    .done(function (data) {
+     var index = 1;
+      data.forEach(function (score) {
+        $("#" + index + "place").text(data.user.naam);
+      });
+     index++;
+    })
+    .fail(function (jqXHR, textStatus) {
+     console.log(data);
+    });
+  
   $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/floors",
@@ -61,7 +76,7 @@ $(document).ready(function () {
           '<td>' + milestone.sponsorNaam + '</td>' +
           '<td>' + milestone.activityNaam + '</td>' +
           '<td>' + milestone.value + '</td>' +
-          '<td>&euro;' + milestone.bedrag + '</td>' +
+          '<td>&euro;' + milestone.bedrag + ',-</td>' +
           '</tr>';
         $('#table-bestmilestone tbody').append(tableRow);
       }
