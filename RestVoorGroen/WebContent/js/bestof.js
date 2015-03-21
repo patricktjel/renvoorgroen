@@ -1,4 +1,49 @@
+//This function will get the best player of each category. 
+function getBestResults() {
+  var bestOfFloors = "";
+  var bestOfSteps = "";
+  var bestOfDistance = "";
+  
+  $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/floors",
+  })
+    .done(function (data) {
+      bestOfFloors = data.user.naam + ": " + data.value;
+    $("#bestOfFloors").text(bestOfFloors);
+    })
+    .fail(function (jqXHR, textStatus) {
+      bestOfFloors = "Not set yet.";
+    $("#bestOfFloors").text(bestOfFloors);
+    });
+   $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/steps",
+  })
+    .done(function (data) {
+      bestOfSteps = data.user.naam + ": " + data.value;
+     $("#bestOfSteps").text(bestOfSteps);
+    })
+    .fail(function (jqXHR, textStatus) {
+      bestOfSteps = "Not set yet.";
+     $("#bestOfSteps").text(bestOfSteps);
+    });
+   $.ajax({
+    type: 'GET',
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance",
+  })
+    .done(function (data) {
+      bestOfDistance = data.user.naam + ": " + data.value + "km";
+     $("#bestOfDistance").text(bestOfDistance);
+    })
+    .fail(function (jqXHR, textStatus) {
+      bestOfDistance = "Not set yet.";
+     $("#bestOfDistance").text(bestOfDistance);
+    });
+}
+
 $(document).ready(function () {
+  getBestResults();
   $('#table-bestmilestone tbody tr').remove();
 
   $.ajax({
@@ -7,11 +52,11 @@ $(document).ready(function () {
   })
     .done(function (data) {
       var tableRow = '';
-    console.log(data);
+      console.log(data);
       //Grab the best 5 milestones, or all the milestones if there are less then 5 milestones. 
       for (var i = 0; i < 5 && data.length > i; i++) {
         var milestone = data[i];
-        
+
         tableRow += '<tr>' +
           '<td>' + milestone.sponsorNaam + '</td>' +
           '<td>' + milestone.activityNaam + '</td>' +

@@ -3,16 +3,15 @@ package nl.rrp.renvoorgroen;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Archivement {
+public class Achievement {
 	
 	private int id;
 	private String name;
-	
 	private double value;
-	public Archivement(JSONObject j) throws JSONException{
+	
+	public Achievement(JSONObject j) throws JSONException{
 		value = j.getDouble("value");
-		name = "JE MOEDER!!!!!";
-		//name = j.getString("name");
+		name = j.getString("naam");
 		id = j.getInt("activity_id");
 		
 		
@@ -58,7 +57,7 @@ public class Archivement {
 		if(id ==3){
 			return progress + " / " + value + " km";	
 		}
-		return progress + " / " + value;
+		return (int)progress + " / " + (int)value;
 	}
 
 	
@@ -70,7 +69,19 @@ public class Archivement {
 		case 3: progress = Model.getInstance().getDistance();  break;
 		default: progress = 0;
 		}
-		return (int) ((progress / value) * 100);
+		return (int) ((progress / value) * 360);
+	}
+	
+	public boolean gotIt(){
+		double progress;
+		switch (id) {
+		case 1: progress = Model.getInstance().getFloor();  break;
+		case 2: progress = Model.getInstance().getSteps();  break;
+		case 3: progress = Model.getInstance().getDistance();  break;
+		default: progress = 0;
+		}
+		return progress >= value;
+		
 	}
 
 }

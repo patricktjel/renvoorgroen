@@ -2,8 +2,8 @@ package nl.rrp.renvoorgroen;
 
 import java.util.concurrent.ExecutionException;
 
-import nl.rrp.renvoorgroen.threads.DownloadArchivements;
-import nl.rrp.renvoorgroen.threads.InitOauth;
+import nl.rrp.renvoorgroen.threads.DownloadAchievements;
+import nl.rrp.renvoorgroen.threads.InitOAuth;
 
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthResultSet;
@@ -17,6 +17,7 @@ import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,9 +35,10 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+       
         Model m = Model.getInstance();
         try {
-        	new DownloadArchivements().execute().get();
+        	new DownloadAchievements().execute().get();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,10 +52,10 @@ public class MainActivity extends Activity {
         if(m.getAccesToken().equals("")){  
         	
 	        w = (WebView) findViewById(R.id.webView);
-	        InitOauth init = new InitOauth(w,this);
+	        InitOAuth init = new InitOAuth(w,this);
 	        init.execute();
         } else {
-        	startActivity(new Intent(this, Overzicht.class));
+        	startActivity(new Intent(this, TabActivity.class));
         	finish();
         }
     }
