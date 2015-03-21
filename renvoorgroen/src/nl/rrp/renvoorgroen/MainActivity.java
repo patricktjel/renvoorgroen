@@ -2,6 +2,7 @@ package nl.rrp.renvoorgroen;
 
 import java.util.concurrent.ExecutionException;
 
+import nl.rrp.renvoorgroen.threads.DownloadArchivements;
 import nl.rrp.renvoorgroen.threads.InitOauth;
 
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
@@ -34,7 +35,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Model m = Model.getInstance();
-        
+        try {
+        	new DownloadArchivements().execute().get();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
         m.init(this);
         Log.d("url", m.getAccesToken());
         if(m.getAccesToken().equals("")){  
