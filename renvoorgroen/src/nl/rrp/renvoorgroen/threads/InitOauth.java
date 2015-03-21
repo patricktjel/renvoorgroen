@@ -1,22 +1,17 @@
 package nl.rrp.renvoorgroen.threads;
 
-import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth;
-import com.temboo.Library.Fitbit.OAuth.InitializeOAuth;
-import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
-import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthResultSet;
-import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthInputSet;
-import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
-import com.temboo.core.TembooException;
-import com.temboo.core.TembooSession;
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.temboo.Library.Fitbit.OAuth.InitializeOAuth;
+import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthInputSet;
+import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
+import com.temboo.core.TembooException;
+import com.temboo.core.TembooSession;
 
 public class InitOAuth extends AsyncTask<Void, Void, InitializeOAuthResultSet> {
 	private TembooSession session;
