@@ -98,7 +98,6 @@ $(document).ready(function () {
     })
     .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
-      console.log(data);
     });
 
   $('#table-users').on('click', 'tr', function () {
@@ -109,7 +108,23 @@ $(document).ready(function () {
       url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/data/get?id=" + fitbit,
     })
       .done(function (data) {
-
+        console.log(data);
+        var distance = data.distance;
+        var steps = data.steps;
+        var stairs = data.floors;
+        bootbox.dialog({
+          message: '<div class="container" style="margin-bottom:40px;">' +
+            '<div class=".col-xs-4 pull-left"><h2><img src="image/footsteps.png" height="200px" alt="footsteps"><br>Steps: ' + steps + '</h2></div>' +
+            '<div class=".col-xs-4 pull-right"><h2><img src="image/running.png" height="200px" alt="Stairs"><br>Distance: ' + distance + 'km </h2></div></div>' +
+            '<div class=".col-xs-6 col-md-offset-4"><h2><img src="image/stair.png" height="160px" alt="running man"><br>Stairs: ' + stairs + '</h2></div>' +
+            '</div>',
+          buttons: {
+            cancel: {
+              label: "Ok",
+              className: "btn-primary",
+            }
+          }
+        });
       })
       .fail(function (jqXHR, textStatus) {
         console.log(jqXHR);
