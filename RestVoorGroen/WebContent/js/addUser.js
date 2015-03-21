@@ -92,6 +92,7 @@ $(document).ready(function () {
           '<td><button onclick="deleteUser(' + user.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
           '</tr>';
         $('#table-users tbody').append(tableRow);
+        tableRow = "";
       });
     })
     .fail(function (jqXHR, textStatus) {

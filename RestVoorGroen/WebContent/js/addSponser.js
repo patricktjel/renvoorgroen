@@ -68,12 +68,14 @@ $(document).ready(function () {
       console.log(data);
       var tableRow = '';
       data.forEach(function (sponsor) {
+        
         tableRow += '<tr>' +
           '<td>' + sponsor.naam + '</td>' +
           '<td>' + sponsor.emailadres + '</td>' +
           '<td><button onclick="deleteSponsor(' + sponsor.id + ');\" type="button" class="btn btn-success btn-sm pull-right delete-user-btn">Delete</button> </td>' +
           '</tr>';
         $('#table-sponsor tbody').append(tableRow);
+        tableRow = "";
       });
     })
     .fail(function (jqXHR, textStatus) {

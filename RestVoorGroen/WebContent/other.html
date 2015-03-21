@@ -6,11 +6,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
   <link href="css/styles.css" rel="stylesheet">
-  <title>Ren voor groen: Users</title>
+  <title>Run 4 Green: Other</title>
 </head>
 
 <body>
@@ -34,46 +35,35 @@
         </p>
 
         <h1 class="page-header">
-            Game Progress
+            Other Functions
         </h1>
+        <div role="tabpanel">
+          <div class="btn-toolbar" role="toolbar">
+            <div class="btn-group" role="group">
+              <button id="btn_print" class="btn btn-default" type="submit"><i class="fa fa-print"></i> Print Statistics</button>
+              <button id="btn_reset" class="btn btn-default" onclick="resetGame();" type="submit">
+                <i class="fa fa-times"></i> Reset Game</button>
+            </div>
+          </div>
 
-        <h2 class="sub-header">Users</h2>
-        <div id="table-users" class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Gebruikersnaam</th>
-                <th>Naam</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <button id="btn_add_user" class="btn btn-default" type="submit" onclick="addUser();"><i class="fa fa-user-plus"></i> Add User</button>
         </div>
-
+        <!--/row-->
       </div>
-      <!--/row-->
     </div>
   </div>
   <!--/.container-->
 
   <footer id="footer">
-    <footer id="footer">
-    </footer>
+  </footer>
 
-    <!-- script references -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/bootbox/bootbox.js"></script>
-    <script src="js/scripts.js"></script>
-    <script src="js/addUser.js"></script>
+  <!-- script references -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/bootbox/bootbox.js"></script>
+  <!-- own scripts -->
+  <script src="js/scripts.js"></script>
+  <script src="js/other.js"></script>
+
 </body>
 
 </html>

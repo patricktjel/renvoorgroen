@@ -2,6 +2,7 @@
  * Style tweaks
  * --------------------------------------------------
  */
+
 body {
   padding-top: 50px;
   background-color: #f5f5f5;
@@ -11,11 +12,19 @@ footer {
   padding-right: 15px;
   background-color: #fff;
 }
-
+.logo {
+  height:45px;
+  margin-top: -12px;
+  margin-left:20px;
+  margin-bottom: auto;
+  position:relative;
+  display:block;
+}
 /*
  * Off Canvas
  * --------------------------------------------------
  */
+
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
@@ -23,16 +32,12 @@ footer {
     -moz-transition: all 0.25s ease-out;
     transition: all 0.25s ease-out;
   }
-
-  .row-offcanvas-left
-  .sidebar-offcanvas {
+  .row-offcanvas-left .sidebar-offcanvas {
     left: -33%;
   }
-
   .row-offcanvas-left.active {
     left: 33%;
   }
-
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
@@ -40,9 +45,8 @@ footer {
     margin-left: 10px;
   }
 }
-
-
 /* Sidebar navigation */
+
 .nav-sidebar {
   background-color: #f5f5f5;
   margin-right: -15px;
@@ -57,7 +61,10 @@ footer {
   color: #fff;
   background-color: #428bca;
 }
-
+.navbar {
+  background-color: #35A13E;
+  height: 20px;
+}
 /*
  * Main content
  */
