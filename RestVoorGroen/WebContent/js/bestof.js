@@ -3,57 +3,65 @@ function getBestResults() {
   var bestOfFloors = "";
   var bestOfSteps = "";
   var bestOfDistance = "";
-  
-   $.ajax({
+
+  $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance?limit=3",
   })
     .done(function (data) {
-     var index = 1;
+    console.log(data);
+      var index = 1;
       data.forEach(function (score) {
-        $("#" + index + "place").text(data.user.naam);
+        $("#" + index + "place").text(score.user.naam);
+        index++;
       });
-     index++;
+      
     })
     .fail(function (jqXHR, textStatus) {
-     console.log(data);
+      console.log(data);
     });
-  
+
   $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/floors?limit=1",
   })
     .done(function (data) {
-      bestOfFloors = data.user.naam + ": " + data.value;
-    $("#bestOfFloors").text(bestOfFloors);
+      data.forEach(function (userObject) {
+        bestOfFloors = userObject.user.naam + ": " + userObject.value;
+      });
+      $("#bestOfFloors").text(bestOfFloors);
     })
     .fail(function (jqXHR, textStatus) {
       bestOfFloors = "Not set yet.";
-    $("#bestOfFloors").text(bestOfFloors);
+      $("#bestOfFloors").text(bestOfFloors);
     });
-   $.ajax({
+  $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/steps?limit=1",
   })
     .done(function (data) {
-      bestOfSteps = data.user.naam + ": " + data.value;
-     $("#bestOfSteps").text(bestOfSteps);
+      data.forEach(function (userObject) {
+        bestOfSteps = userObject.user.naam + ": " + userObject.value;
+      });
+      $("#bestOfSteps").text(bestOfSteps);
     })
     .fail(function (jqXHR, textStatus) {
       bestOfSteps = "Not set yet.";
-     $("#bestOfSteps").text(bestOfSteps);
+      $("#bestOfSteps").text(bestOfSteps);
     });
-   $.ajax({
+  $.ajax({
     type: 'GET',
     url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance?limit=1",
   })
     .done(function (data) {
-      bestOfDistance = data.user.naam + ": " + data.value + "km";
-     $("#bestOfDistance").text(bestOfDistance);
+      data.forEach(function (userObject) {
+        bestOfDistance = userObject.user.naam + ": " + userObject.value + "km";
+      });
+      $("#bestOfDistance").text(bestOfDistance);
     })
     .fail(function (jqXHR, textStatus) {
       bestOfDistance = "Not set yet.";
-     $("#bestOfDistance").text(bestOfDistance);
+      $("#bestOfDistance").text(bestOfDistance);
     });
 }
 
@@ -67,7 +75,6 @@ $(document).ready(function () {
   })
     .done(function (data) {
       var tableRow = '';
-      console.log(data);
       //Grab the best 5 milestones, or all the milestones if there are less then 5 milestones. 
       for (var i = 0; i < 5 && data.length > i; i++) {
         var milestone = data[i];
