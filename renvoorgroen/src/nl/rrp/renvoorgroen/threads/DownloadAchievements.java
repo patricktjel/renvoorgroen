@@ -1,7 +1,5 @@
 package nl.rrp.renvoorgroen.threads;
 
-import java.io.InputStream;
-
 import nl.rrp.renvoorgroen.Achievement;
 import nl.rrp.renvoorgroen.Model;
 
@@ -14,7 +12,6 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 
-import android.app.backup.RestoreObserver;
 import android.os.AsyncTask;
 import android.util.Log;
 

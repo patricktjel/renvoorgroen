@@ -4,28 +4,14 @@ import java.util.concurrent.ExecutionException;
 
 import nl.rrp.renvoorgroen.threads.DownloadAchievements;
 import nl.rrp.renvoorgroen.threads.InitOAuth;
-
-import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
-import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthResultSet;
-import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthInputSet;
-import com.temboo.Library.Fitbit.OAuth.*;
-import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
-import com.temboo.core.TembooException;
-import com.temboo.core.TembooSession;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 
 public class MainActivity extends Activity {

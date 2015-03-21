@@ -7,14 +7,14 @@ import nl.rrp.renvoorgroen.Model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 import com.temboo.Library.Fitbit.Activities.GetActivities;
 import com.temboo.Library.Fitbit.Activities.GetActivities.GetActivitiesInputSet;
 import com.temboo.Library.Fitbit.Activities.GetActivities.GetActivitiesResultSet;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
-
-import android.os.AsyncTask;
-import android.util.Log;
 
 public class DownloadActivitiesFitbit extends AsyncTask<Void, Void, JSONObject> {
 
