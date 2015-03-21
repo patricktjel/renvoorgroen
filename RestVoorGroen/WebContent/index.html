@@ -21,7 +21,7 @@
 
     <div class="row row-offcanvas row-offcanvas-left">
       <div id="menu" class="col-sm-3 col-md-2 sidebar-offcanvas" role="navigation">
-        
+
       </div>
       <!--/span-->
 
@@ -36,7 +36,7 @@
         <h1 class="page-header">
             Game Progress <button id="btn_refresh" class="btn btn-default" type="submit" onclick="location.reload();">Refresh</button>
         </h1>
-        
+
 
         <div class="row placeholders">
           <div class="col-xs-6 col-sm-3 placeholder text-center">
@@ -56,7 +56,7 @@
         <hr>
 
         <h2 class="sub-header">Most Valuable Milestones</h2>
-        <div class="table-responsive">
+        <div id="table-bestmilestone" class="table-responsive">
           <table class="table table-striped">
             <thead>
               <tr>
@@ -69,25 +69,11 @@
             </thead>
             <tbody>
               <tr>
-                <td>1,001</td>
-                <td>25km</td>
-                <td>145553</td>
-                <td>123</td>
-                <td>&euro;4000</td>
-              </tr>
-              <tr>
-                <td>1,002</td>
-                <td>22km</td>
-                <td>123533</td>
-                <td>115</td>
-                <td>&euro;3000</td>
-              </tr>
-              <tr>
-                <td>1,003</td>
-                <td>20km</td>
-                <td>111230</td>
-                <td>112</td>
-                <td>&euro;2000</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -99,13 +85,15 @@
   </div>
   <!--/.container-->
 
-  <footer id="footer">  <footer id="footer">
-  </footer>
+  <footer id="footer">
+    <footer id="footer">
+    </footer>
 
-  <!-- script references -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="js/scripts.js"></script>
+    <!-- script references -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/bestof.js"></script>
 </body>
 
 </html>
