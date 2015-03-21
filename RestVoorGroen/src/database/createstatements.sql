@@ -128,6 +128,14 @@ INSERT ignore INTO `achievements` (`id`, `value`, `activity_id`, `naam`) VALUES
 (1, 500, 1, 'NOOOOOOBBBB'),
 (2, 3432, 1, 'SEXY BITCH');
 
+INSERT ignore INTO `achievements` (`id`, `value`, `activity_id`, `naam`) VALUES
+(3, 1000, 1, 'Beginner'),
+(5, 2500, 1, 'No life Traploper'),
+(8, 1000, 2, 'Beginner'),
+(9, 2500, 2, 'No life Traploper'),
+(12, 1000, 3, 'Beginner'),
+(13, 2500, 3, 'No life Traploper');
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

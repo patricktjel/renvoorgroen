@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="nl.rrp.renvoorgroen.Overzicht2" >
+
+     <item
+        android:id="@+id/myswitch"
+        android:title=""
+        android:showAsAction="always"
+        android:actionLayout="@layout/switchlayout"
+    />   
+
+</menu>

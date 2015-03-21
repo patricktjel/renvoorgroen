@@ -52,9 +52,9 @@ public class Sender extends IntentService {
 	
 	
 	private void run() throws InterruptedException, ExecutionException{
-		JSONObject j =  new DownloadActivity().execute().get();
+		JSONObject j =  new DownloadActivitiesFitbit().execute().get();
 		new SendDataToServer().execute(j).get();
-		Thread.sleep(15000);
+		Thread.sleep(120000);
 
 	}
 

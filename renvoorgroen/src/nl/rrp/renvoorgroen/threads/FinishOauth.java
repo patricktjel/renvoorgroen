@@ -1,7 +1,8 @@
 package nl.rrp.renvoorgroen.threads;
 
 import nl.rrp.renvoorgroen.MainActivity;
-import nl.rrp.renvoorgroen.Overzicht;
+import nl.rrp.renvoorgroen.Overview;
+import nl.rrp.renvoorgroen.TabActivity;
 
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth;
 import com.temboo.Library.Fitbit.OAuth.FinalizeOAuth.FinalizeOAuthInputSet;
@@ -17,11 +18,11 @@ import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class FinishOauth extends AsyncTask<InitializeOAuthResultSet, Void, Void> {
+public class FinishOAuth extends AsyncTask<InitializeOAuthResultSet, Void, Void> {
 
 	private TembooSession session = null;
 	private Context c;
-	public FinishOauth (TembooSession sess,Context c){
+	public FinishOAuth (TembooSession sess,Context c){
 		this.session = sess;
 		this.c = c;
 	}
@@ -78,7 +79,7 @@ public class FinishOauth extends AsyncTask<InitializeOAuthResultSet, Void, Void>
 	
 	@Override
 	protected void onPostExecute(Void result) {
-		c.startActivity(new Intent(c, Overzicht.class));
+		c.startActivity(new Intent(c, TabActivity.class));
     	((MainActivity) c).finish();
 	}
 }

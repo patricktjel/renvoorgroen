@@ -16,7 +16,7 @@ import com.temboo.core.TembooSession;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DownloadActivity extends AsyncTask<Void, Void, JSONObject> {
+public class DownloadActivitiesFitbit extends AsyncTask<Void, Void, JSONObject> {
 
 	@Override
 	protected JSONObject doInBackground(Void... arg0) {
