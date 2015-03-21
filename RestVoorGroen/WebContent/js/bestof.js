@@ -21,7 +21,7 @@ function getBestResults() {
   
   $.ajax({
     type: 'GET',
-    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/floors",
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/floors?limit=1",
   })
     .done(function (data) {
       bestOfFloors = data.user.naam + ": " + data.value;
@@ -33,7 +33,7 @@ function getBestResults() {
     });
    $.ajax({
     type: 'GET',
-    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/steps",
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/steps?limit=1",
   })
     .done(function (data) {
       bestOfSteps = data.user.naam + ": " + data.value;
@@ -45,7 +45,7 @@ function getBestResults() {
     });
    $.ajax({
     type: 'GET',
-    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance",
+    url: "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/best/distance?limit=1",
   })
     .done(function (data) {
       bestOfDistance = data.user.naam + ": " + data.value + "km";
