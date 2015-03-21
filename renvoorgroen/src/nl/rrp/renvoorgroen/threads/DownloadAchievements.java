@@ -2,7 +2,7 @@ package nl.rrp.renvoorgroen.threads;
 
 import java.io.InputStream;
 
-import nl.rrp.renvoorgroen.Archivement;
+import nl.rrp.renvoorgroen.Achievement;
 import nl.rrp.renvoorgroen.Model;
 
 import org.apache.http.HttpEntity;
@@ -18,7 +18,7 @@ import android.app.backup.RestoreObserver;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class DownloadArchivements extends AsyncTask<Void, Void, Void> {
+public class DownloadAchievements extends AsyncTask<Void, Void, Void> {
 
 	String url = "http://grolschbak.cloudapp.net:8080/Restvoorgroen/api/achievement/get";
 	@Override
@@ -47,7 +47,7 @@ public class DownloadArchivements extends AsyncTask<Void, Void, Void> {
 	            	JSONArray ar = new JSONArray(result);
 	            	for(int i = 0; i<ar.length();i++){
 	            		try {
-	            			model.addArchivement(new Archivement(ar.getJSONObject(i)));
+	            			model.addArchivement(new Achievement(ar.getJSONObject(i)));
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

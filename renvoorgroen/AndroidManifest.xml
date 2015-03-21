@@ -28,12 +28,16 @@
         <service android:name=".threads.Sender" />
 
         <activity
-            android:name=".Overzicht"
+            android:name=".Overview"
             android:label="@string/title_activity_overzicht" >
         </activity>
         <activity
-            android:name=".ArchivementActivty"
+            android:name=".AchievementsFragment"
             android:label="@string/title_activity_archivement_activty" >
+        </activity>
+        <activity
+            android:name=".TabActivity"
+            android:label="@string/title_activity_overzicht2" >
         </activity>
     </application>
 

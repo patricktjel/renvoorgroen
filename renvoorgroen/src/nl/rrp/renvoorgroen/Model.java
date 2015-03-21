@@ -23,7 +23,7 @@ public class Model extends Observable {
 	
 	private static Model model;
 	
-	private ArrayList<Archivement> archivementsSteps, archivementsDistance, archivementsFloor;
+	private ArrayList<Achievement> achievementsSteps, achievementsDistance, achievementsFloor;
 	public static Model getInstance(){
 		if(model == null){
 			model = new Model();
@@ -32,9 +32,9 @@ public class Model extends Observable {
 	}
 	
 	public Model(){
-		archivementsSteps = new ArrayList<Archivement>();
-		archivementsDistance = new ArrayList<Archivement>();
-		archivementsFloor = new ArrayList<Archivement>();
+		achievementsSteps = new ArrayList<Achievement>();
+		achievementsDistance = new ArrayList<Achievement>();
+		achievementsFloor = new ArrayList<Achievement>();
 		steps =0;
 		distance = 0;
 		floor=0;
@@ -70,29 +70,29 @@ public class Model extends Observable {
 		return UserId;
 	}
 
-	public void addArchivement(Archivement archivement) {
+	public void addArchivement(Achievement archivement) {
 		// 1 floor
 		// 2 steps
 		// 3 distance
 		switch (archivement.getId()) {
-		case 1: archivementsFloor.add(archivement); break;
-		case 2: archivementsSteps.add(archivement); break;
-		case 3: archivementsDistance.add(archivement); break;
+		case 1: achievementsFloor.add(archivement); break;
+		case 2: achievementsSteps.add(archivement); break;
+		case 3: achievementsDistance.add(archivement); break;
 			
 		}
 		
 	}
 	
-	public ArrayList<Archivement> getArchivementsSteps() {
-		return archivementsSteps;
+	public ArrayList<Achievement> getAchievementsSteps() {
+		return achievementsSteps;
 	}
 
-	public ArrayList<Archivement> getArchivementsDistance() {
-		return archivementsDistance;
+	public ArrayList<Achievement> getAchievementsDistance() {
+		return achievementsDistance;
 	}
 
-	public ArrayList<Archivement> getArchivementsFloor() {
-		return archivementsFloor;
+	public ArrayList<Achievement> getAchievementsFloor() {
+		return achievementsFloor;
 	}
 
 	public double getSteps() {
@@ -127,31 +127,31 @@ public class Model extends Observable {
 	
 	
 	
-	public Archivement getArchivementSteps() {
-		for(Archivement a : archivementsSteps){
+	public Achievement getAchievementSteps() {
+		for(Achievement a : achievementsSteps){
 			if(steps < a.getValue()){
 				return a;
 			}
 		}
-		return archivementsSteps.get(archivementsSteps.size()-1);
+		return achievementsSteps.get(achievementsSteps.size()-1);
 	}
 
-	public Archivement getArchivementDistance() {
-		for(Archivement a : archivementsDistance){
+	public Achievement getArchivementDistance() {
+		for(Achievement a : achievementsDistance){
 			if(distance < a.getValue()){
 				return a;
 			}
 		}
-		return archivementsDistance.get(archivementsDistance.size()-1);
+		return achievementsDistance.get(achievementsDistance.size()-1);
 	}
 
-	public Archivement getArchivementFloor() {
-		for(Archivement a : archivementsFloor){
+	public Achievement getArchivementFloor() {
+		for(Achievement a : achievementsFloor){
 			if(floor < a.getValue()){
 				return a;
 			}
 		}
-		return archivementsFloor.get(archivementsFloor.size()-1);
+		return achievementsFloor.get(achievementsFloor.size()-1);
 	}
 
 	

@@ -18,11 +18,11 @@ import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class InitOauth extends AsyncTask<Void, Void, InitializeOAuthResultSet> {
+public class InitOAuth extends AsyncTask<Void, Void, InitializeOAuthResultSet> {
 	private TembooSession session;
 	private WebView w;
 	private Context c;
-	public InitOauth (WebView web, Context c){
+	public InitOAuth (WebView web, Context c){
 		this.w = web;
 		this.c = c;
 	}
@@ -70,7 +70,7 @@ public class InitOauth extends AsyncTask<Void, Void, InitializeOAuthResultSet> {
 				Log.d("Url", url);
 				if(url.contains("renvoorgroen.temboolive.com")){
 					
-					FinishOauth a = new FinishOauth(session,c);
+					FinishOAuth a = new FinishOAuth(session,c);
 					a.execute(result);
 				}
 				
