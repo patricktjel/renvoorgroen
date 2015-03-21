@@ -27,7 +27,7 @@ public abstract class DatabaseHelper {
 	private static final String DB_USER = "root";
 	private static final String DB_HOST = "jdbc:mysql://localhost:3306/";
 	private static final String DB_NAME = "mydb";
-	private static final String DB_PASS = "M@sterDev";
+	private static final String DB_PASS = "y2S96Fny";
 	
 	//Realative path to SQL create statements, created by mysql workbench
 	private static final String CREATE_SQL_STATEMENTS = "createstatements.sql";
@@ -97,6 +97,11 @@ public abstract class DatabaseHelper {
 			System.err.println("Failed to create database");
 		}
 		
+	}
+	
+	public static void reset() throws SQLException{
+		getConnection().createStatement().execute("DROP DATABASE "+ DB_NAME);
+		createDatabase();
 	}
 	
 	/**

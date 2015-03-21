@@ -44,6 +44,22 @@ public class _Milestone{
 		throw new  WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/getBest")
+	public ArrayList<Milestone> getBestFinishedMilestones() {
+		Model model = (Model) context.getAttribute("model");
+		try {
+			String sql = "SELECT * FROM  `milestones` ORDER BY `bedrag` DESC;";
+			PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
+			ResultSet set = stat.executeQuery();
+			return model.filterMilestones(model.getMilestonesBySet(set));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		throw new  WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/add")
