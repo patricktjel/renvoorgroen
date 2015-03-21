@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 public class Sender extends IntentService {
@@ -52,8 +53,10 @@ public class Sender extends IntentService {
 	
 	private void run() throws InterruptedException, ExecutionException{
 		JSONObject j =  new DownloadActivitiesFitbit().execute().get();
-		new SendDataToServer().execute(j).get();
-		Thread.sleep(120000);
+		if(j != null){
+			new SendDataToServer().execute(j).get();
+		}
+		Thread.sleep(60000);
 
 	}
 
@@ -61,6 +64,8 @@ public class Sender extends IntentService {
 	protected void onHandleIntent(Intent intent) {
 		try {
 			while(run){
+				Log.d("SENDER", "GETTING SENDING DATA");
+				Toast.makeText(this, "service sending data", Toast.LENGTH_SHORT).show();
 				run();
 			}
 		} catch (Exception e) {

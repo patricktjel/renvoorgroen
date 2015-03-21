@@ -25,6 +25,9 @@ public class SendDataToServer extends AsyncTask<JSONObject, Void, Void>
 	@Override
 	protected Void doInBackground(JSONObject... params) {
 		JSONObject j = params[0];
+		if(j == null){
+			return null;
+		}
 		HttpClient httpClient = new DefaultHttpClient();
         HttpContext localContext = new BasicHttpContext();
         HttpPut put = new HttpPut(url);

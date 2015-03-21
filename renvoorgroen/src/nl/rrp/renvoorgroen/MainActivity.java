@@ -43,6 +43,8 @@ public class MainActivity extends Activity {
         } else {
         	startActivity(new Intent(this, TabActivity.class));
         	finish();
+//        	startActivity(new Intent(this, RegisterActivity.class));
+//        	finish();
         }
     }
 

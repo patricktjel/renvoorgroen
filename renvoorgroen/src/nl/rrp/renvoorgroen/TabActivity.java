@@ -36,8 +36,14 @@ public class TabActivity extends Activity implements ActionBar.TabListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
+		// make sure alle running serive are stopt..
+		stopService(new Intent(TabActivity.this, Sender.class));
+		stopService(new Intent(TabActivity.this, Sender.class));
+		stopService(new Intent(TabActivity.this, Sender.class));
 		setContentView(R.layout.tabactivity);
 	
+		
 		// Set up the action bar.
 		final ActionBar actionBar = getActionBar();
 		

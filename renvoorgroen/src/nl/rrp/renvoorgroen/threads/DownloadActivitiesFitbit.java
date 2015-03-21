@@ -45,6 +45,7 @@ public class DownloadActivitiesFitbit extends AsyncTask<Void, Void, JSONObject> 
 			GetActivitiesResultSet getActivitiesResults = getActivitiesChoreo.execute(getActivitiesInputs);
 			Log.d("json", getActivitiesResults.get_Response());
 	
+			
 			return new JSONObject(getActivitiesResults.get_Response());
 		} catch (TembooException e) {
 			// TODO Auto-generated catch block

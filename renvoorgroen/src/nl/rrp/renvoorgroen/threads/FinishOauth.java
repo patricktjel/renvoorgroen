@@ -1,6 +1,8 @@
 package nl.rrp.renvoorgroen.threads;
 
 import nl.rrp.renvoorgroen.MainActivity;
+import nl.rrp.renvoorgroen.Model;
+import nl.rrp.renvoorgroen.RegisterActivity;
 import nl.rrp.renvoorgroen.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -61,6 +63,7 @@ public class FinishOAuth extends AsyncTask<InitializeOAuthResultSet, Void, Void>
 			e.putString("UserID", finalizeOAuthResults.get_UserID());
 			e.apply();
 			e.commit();
+			Model.getInstance().init(c);
 			
 		} catch (TembooException e) {
 			// TODO Auto-generated catch block
@@ -77,7 +80,7 @@ public class FinishOAuth extends AsyncTask<InitializeOAuthResultSet, Void, Void>
 	
 	@Override
 	protected void onPostExecute(Void result) {
-		c.startActivity(new Intent(c, TabActivity.class));
+		c.startActivity(new Intent(c, RegisterActivity.class));
     	((MainActivity) c).finish();
 	}
 }
