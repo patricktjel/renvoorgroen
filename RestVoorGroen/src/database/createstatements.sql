@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`achievements` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `value` DOUBLE NOT NULL,
   `activity_id` INT NOT NULL,
+  `naam` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_achievements_activity_idx` (`activity_id` ASC),
   CONSTRAINT `fk_achievements_activity`
@@ -123,9 +124,9 @@ INSERT ignore INTO `activity` (`id`, `user_activity`) VALUES
 INSERT ignore INTO `users` (`id`, `inlognaam`, `wachtwoord`, `fitbitid`, `naam`) VALUES
 (6, 'rob', 'robbieg', '3B32FN', 'robs');
 
-INSERT ignore INTO `achievements` (`id`, `value`, `activity_id`) VALUES
-(1, 500, 1),
-(2, 3432, 1);
+INSERT ignore INTO `achievements` (`id`, `value`, `activity_id`, `naam`) VALUES
+(1, 500, 1, 'NOOOOOOBBBB'),
+(2, 3432, 1, 'SEXY BITCH');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

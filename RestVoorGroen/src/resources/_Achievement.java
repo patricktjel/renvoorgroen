@@ -28,7 +28,7 @@ public class _Achievement {
 	public ArrayList<Achievement> getAchievements() {
 		Model model = (Model) context.getAttribute("model");
 		try {
-			String sql = "SELECT * FROM  `achievements`;";
+			String sql = "SELECT * FROM  `achievements` ORDER BY activity_id, value;";
 			PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
 			ResultSet set = stat.executeQuery();
 			return model.getAchievementsBySet(set);

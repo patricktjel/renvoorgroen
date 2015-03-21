@@ -103,6 +103,51 @@ public class Model {
 		return milestones;
 	}
 	
+	public ArrayList<Milestone> filterMilestones(ArrayList<Milestone> milestones) throws SQLException{
+		//total stats
+		int totalsteps = getUserActivityTotal("steps");
+		int totalfloors = getUserActivityTotal("floors");
+		int totaldistance = getUserActivityTotal("distance");
+		
+		//selectmetn of milestones
+		ArrayList<Milestone> results = new ArrayList<Milestone>();
+		System.out.println(totalsteps + " " + totalfloors + " " + totaldistance);
+		for (Milestone stone : milestones) {
+			int activityid = stone.getActivity_id();
+			if(activityid == 1 && stone.getValue() <= totalfloors){
+				results.add(stone);
+			} else if(activityid == 2 && stone.getValue() <= totalsteps){
+				results.add(stone);
+			} else if(activityid == 3 && stone.getValue() <= totaldistance){
+				results.add(stone);
+			}
+		}
+		
+		return results;
+	}
+	
+	private int getUserActivityTotal(String activity) throws SQLException{
+		//get the activity id
+		int activity_id = getActivityId(activity);
+		
+		//sum the amount
+		String sql = "SELECT SUM(value) AS sum FROM  `user_activity` WHERE id=?;";
+		PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
+		stat.setInt(1, activity_id);
+		ResultSet activityset = stat.executeQuery();
+		activityset.next();
+		return activityset.getInt("sum");
+	}
+	
+	public int getActivityId(String activity) throws SQLException{
+		String sql = "SELECT * FROM  `activity` WHERE user_activity=?;";
+		PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
+		stat.setString(1, activity);
+		ResultSet set = stat.executeQuery();
+		set.next();
+		return set.getInt("id");
+	}
+	
 	public ArrayList<Achievement> getAchievementsBySet(ResultSet set) throws SQLException{
 		ArrayList<Achievement> achievements = new ArrayList<Achievement>();
 		
@@ -118,8 +163,9 @@ public class Model {
 			ResultSet activityset = stat.executeQuery();
 			activityset.next();
 			String activity = activityset.getString("user_activity");
+			String naam = set.getString("naam");
 
-			achievements.add(new Achievement(id, value, activity_id, new Activity(activity_id, activity)));
+			achievements.add(new Achievement(id, value, activity_id, new Activity(activity_id, activity), naam));
 		}
 		
 		return achievements;

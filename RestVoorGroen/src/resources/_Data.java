@@ -19,10 +19,14 @@ import database.DatabaseHelper;
 
 @Path("/data")
 public class _Data {
+	
+	@Context ServletContext context;
+	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/put")
 	public Response putData(DataFitbit data) {
+		Model model = (Model) context.getAttribute("model");
 		try {
 			//gets the user id
 			String sql = "SELECT * FROM  `users` WHERE fitbitid=?;";
@@ -34,15 +38,15 @@ public class _Data {
 			
 			//gets activity ids
 			//gets floor id
-			int floorsid = getActivityId("floors");
+			int floorsid = model.getActivityId("floors");
 			insertData(userid, floorsid, data.getFloors());
 			
 			//gets steps id
-			int stepsid = getActivityId("steps");
+			int stepsid = model.getActivityId("steps");
 			insertData(userid, stepsid, data.getSteps());
 			
 			//gets distance id
-			int distanceid = getActivityId("distance");
+			int distanceid = model.getActivityId("distance");
 			insertData(userid, distanceid, data.getDistance());
 			throw new WebApplicationException(Response.Status.CREATED);
 		} catch (SQLException e) {
@@ -50,15 +54,6 @@ public class _Data {
 			e.printStackTrace();
 		}
 		throw new  WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-	}
-	
-	private int getActivityId(String activity) throws SQLException{
-		String sql = "SELECT * FROM  `activity` WHERE user_activity=?;";
-		PreparedStatement stat = DatabaseHelper.getConnection().prepareStatement(sql);
-		stat.setString(1, activity);
-		ResultSet set = stat.executeQuery();
-		set.next();
-		return set.getInt("id");
 	}
 	
 	private void insertData(int userid, int activityid, double value) throws SQLException{
